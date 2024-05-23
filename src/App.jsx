@@ -15,6 +15,12 @@ const action = (state, reducer) => {
       count: state.count + 1,
     };
   }
+  if (reducer.type === "CHANGE") {
+    return {
+      ...state,
+      value: reducer.payload.value,
+    };
+  }
 
   return state;
 };
@@ -47,7 +53,12 @@ function App() {
         </Button>
       </div>
       <div className="flex">
-        <Input onChange={(e) => setValue(e.target.value)} type="text" />
+        <Input
+          onChange={(e) =>
+            dispatch({ type: "CHANGE", payload: { value: e.target.value } })
+          }
+          type="text"
+        />
         <h3>Value: {state.value}</h3>
       </div>
     </div>
