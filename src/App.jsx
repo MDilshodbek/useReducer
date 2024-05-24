@@ -1,45 +1,47 @@
 import "./App.css";
-import { useReducer, useState, UseState } from "react";
+import { useReducer } from "react";
 import { Button, Input } from "antd";
 
-const action = (state, reducer) => {
-  if (reducer.type === "INCREMENT") {
-    return {
-      ...state,
-      count: state.count + 1,
-    };
-  }
-  if (reducer.type === "DECREMENT") {
-    return {
-      ...state,
-      count: state.count + 1,
-    };
-  }
-  if (reducer.type === "CHANGE") {
-    return {
-      ...state,
-      value: reducer.payload.value,
-    };
+const action = (state, { type, payload }) => {
+  // if (reducer.type === "INCREMENT") {
+  //   return {
+  //     ...state,
+  //     count: state.count + 1,
+  //   };
+  // }
+  // if (reducer.type === "DECREMENT") {
+  //   return {
+  //     ...state,
+  //     count: state.count + 1,
+  //   };
+  // }
+  // if (reducer.type === "CHANGE") {
+  //   return {
+  //     ...state,
+  //     value: reducer.payload.value,
+  //   };
+  // }
+  // return state;
+
+  switch (type) {
+    case "INCREMENT":
+      return { ...state, count: state.count + 1 };
+    case "DECREMENT":
+      return { ...state, count: state.count - 1 };
+    case "CHANGE":
+      return { ...state, value: payload.value };
+
+    default:
+      return state;
   }
 
-  return state;
 };
 
 function App() {
-  // const [count, setCount] = useState(0);
-  // const [value, setValue] = useState(0);
   const [state, dispatch] = useReducer(action, {
     count: 0,
     value: "",
   });
-
-  const increment = () => {
-    setCount(count + 1);
-  };
-
-  const decrement = () => {
-    setCount(count - 1);
-  };
 
   return (
     <div className="flex flex-col justify-center items-center gap-[10px]">
