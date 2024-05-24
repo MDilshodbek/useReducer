@@ -34,7 +34,6 @@ const action = (state, { type, payload }) => {
     default:
       return state;
   }
-
 };
 
 function App() {
@@ -46,7 +45,7 @@ function App() {
   return (
     <div className="flex flex-col justify-center items-center gap-[10px]">
       <div className="flex gap-[10px]">
-        <Button type="primary" onClick={() => dispatch({ type: "IMCREMENT" })}>
+        <Button type="primary" onClick={() => dispatch({ type: "INCREMENT" })}>
           Plus
         </Button>
         {state.count}
